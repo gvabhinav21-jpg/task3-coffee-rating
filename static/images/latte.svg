@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="latte-milk" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eed4b7"/>
+      <stop offset="100%" stop-color="#fff8f2"/>
+    </linearGradient>
+    <linearGradient id="latte-coffee" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3d2110"/>
+      <stop offset="100%" stop-color="#8c5831"/>
+    </linearGradient>
+    <linearGradient id="glass-layers" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="25%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="85%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+  <!-- Background soft circle -->
+  <circle cx="50" cy="50" r="45" fill="#f5e0c3" fill-opacity="0.12"/>
+
+  <!-- Glass back shadow -->
+  <ellipse cx="50" cy="88" rx="17" ry="4" fill="#000000" opacity="0.35"/>
+
+  <!-- Coffee & Milk Layers inside the cup -->
+  <!-- Milk base layer -->
+  <path d="M36,60 L38,82 C38,85 41,87 45,87 L55,87 C59,87 62,85 62,82 L64,60 Z" fill="url(#latte-milk)"/>
+  
+  <!-- Coffee middle layer -->
+  <path d="M34,38 L36,61 L64,61 L66,38 Z" fill="url(#latte-coffee)"/>
+  
+  <!-- Foam top layer -->
+  <ellipse cx="50" cy="38" rx="16" ry="4" fill="#ffffff"/>
+  
+  <!-- Glass Body (Transparent overlay) -->
+  <path d="M33,26 L38,83 C38,86 41,88 45,88 L55,88 C59,88 62,86 62,83 L67,26 Z" fill="url(#glass-layers)" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
+
+  <!-- Rim -->
+  <ellipse cx="50" cy="26" rx="17" ry="3" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="foam-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#f5e0c3"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="glass-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <!-- Background soft circle -->
+  <circle cx="50" cy="50" r="45" fill="#d97706" fill-opacity="0.08"/>
+
+  <!-- Saucer -->
+  <ellipse cx="50" cy="80" rx="32" ry="7" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+
+  <!-- Coffee Liquid Layer -->
+  <path d="M28,45 C28,68 34,76 50,76 C66,76 72,68 72,45 Z" fill="#451a03" opacity="0.95"/>
+  
+  <!-- Milk Layer -->
+  <path d="M28,45 C28,55 34,60 50,60 C66,60 72,55 72,45 Z" fill="#d97706" opacity="0.3"/>
+
+  <!-- Glass Body (Transparent) -->
+  <path d="M28,40 C28,68 34,76 50,76 C66,76 72,68 72,40 Z" fill="url(#glass-grad)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+  <path d="M72,44 C78,44 80,56 72,58" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
+
+  <!-- Fluffy Foam Cap (Top overflowing) -->
+  <ellipse cx="50" cy="38" rx="23" ry="8" fill="url(#foam-grad)"/>
+  <ellipse cx="44" cy="35" rx="12" ry="5" fill="#ffffff"/>
+  <ellipse cx="56" cy="36" rx="10" ry="4" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Chocolate Powder Sprinkles -->
+  <circle cx="42" cy="36" r="1" fill="#451a03"/>
+  <circle cx="48" cy="34" r="1.2" fill="#451a03"/>
+  <circle cx="53" cy="37" r="0.8" fill="#451a03"/>
+  <circle cx="50" cy="39" r="1" fill="#451a03"/>
+  <circle cx="58" cy="35" r="1.1" fill="#451a03"/>
+</svg>

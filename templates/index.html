@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy Cup - Specialty Coffee Ratings</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Background Coffee Gradients -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="cafe-header">
+            <div class="logo">
+                <i class="fa-solid fa-mug-hot logo-icon"></i>
+                <h1 class="logo-text">Cozy Cup</h1>
+            </div>
+            <p class="tagline">Explore and rate our finest barista selections. Your voice shapes our menu!</p>
+        </header>
+
+        <!-- Top Leaderboard Banner -->
+        <section class="leaderboard-section">
+            <div class="leaderboard-card" id="leaderboard-banner">
+                <div class="leaderboard-badge"><i class="fa-solid fa-crown"></i> Customer Favorite</div>
+                <div class="leaderboard-content">
+                    <div class="leaderboard-image-container">
+                        <img src="/static/images/espresso.svg" id="leader-img" alt="Top Coffee">
+                    </div>
+                    <div class="leaderboard-info">
+                        <h2 id="leader-name" class="leader-title">Loading Favorite...</h2>
+                        <p id="leader-desc" class="leader-text">Rate items below to crown a favorite.</p>
+                        <div class="leader-score">
+                            <span class="score-label">Total Votes:</span>
+                            <span id="leader-votes" class="score-number">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coffee Menu Grid -->
+        <section class="menu-section">
+            <h2 class="section-title"><i class="fa-solid fa-mug-saucer"></i> Specialty Board</h2>
+            <div class="menu-grid" id="menu-grid">
+                <!-- Dynamic Coffee Cards -->
+                <div class="loading-state">
+                    <i class="fa-solid fa-circle-notch fa-spin spinner"></i>
+                    <p>Loading specialty board...</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="/static/app.js"></script>
+</body>
+</html>

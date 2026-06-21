@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="cold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d1305"/>
+      <stop offset="60%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#120500"/>
+    </linearGradient>
+    <linearGradient id="glass-reflect" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="85%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+  <!-- Background soft circle -->
+  <circle cx="50" cy="50" r="45" fill="#451a03" fill-opacity="0.08"/>
+
+  <!-- Glass back shadow -->
+  <ellipse cx="50" cy="88" rx="16" ry="4" fill="#000000" opacity="0.4"/>
+
+  <!-- Coffee Liquid in Glass -->
+  <path d="M35,28 L38,82 C38,85 41,87 45,87 L55,87 C59,87 62,85 62,82 L65,28 Z" fill="url(#cold-grad)"/>
+
+  <!-- Ice Cubes -->
+  <!-- Cube 1 -->
+  <rect x="42" y="42" width="12" height="12" rx="2" fill="#ffffff" fill-opacity="0.25" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.4" transform="rotate(15 48 48)"/>
+  <!-- Cube 2 -->
+  <rect x="46" y="58" width="13" height="13" rx="2" fill="#ffffff" fill-opacity="0.2" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.3" transform="rotate(-10 52 64)"/>
+  <!-- Cube 3 (top floating) -->
+  <rect x="39" y="28" width="11" height="11" rx="2" fill="#ffffff" fill-opacity="0.35" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.5" transform="rotate(40 44 33)"/>
+
+  <!-- Glass Body (Transparent overlay) -->
+  <path d="M34,22 L38,83 C38,86 41,88 45,88 L55,88 C59,88 62,86 62,83 L66,22 Z" fill="url(#glass-reflect)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+
+  <!-- Glass Rim -->
+  <ellipse cx="50" cy="22" rx="16" ry="3" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+
+  <!-- Straw (Red & White stripe dynamic detail) -->
+  <path d="M54,12 L48,32 L40,65" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+  <path d="M54,12 L48,32 L40,65" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 3" opacity="0.9"/>
+  
+  <!-- Condensation droplets -->
+  <circle cx="37" cy="45" r="0.8" fill="#ffffff" opacity="0.5"/>
+  <circle cx="39" cy="62" r="0.6" fill="#ffffff" opacity="0.4"/>
+  <circle cx="62" cy="50" r="0.9" fill="#ffffff" opacity="0.5"/>
+  <path d="M62,51 L62,54" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-linecap="round" opacity="0.3"/>
+</svg>

@@ -1,0 +1,390 @@
+/* Cozy Cup Design System */
+:root {
+    --bg-dark: #0c0a09;
+    --card-bg: rgba(28, 25, 23, 0.7);
+    --border-warm: rgba(120, 53, 15, 0.2);
+    --accent-gold: #f59e0b;
+    --accent-crema: #fef3c7;
+    --text-light: #fafaf9;
+    --text-muted: #a8a29e;
+    --wood-dark: #292524;
+    
+    --shadow-warm: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 1px rgba(245, 158, 11, 0.15);
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Gradients */
+.bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(130px);
+    z-index: -1;
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.bg-glow-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #78350f 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+}
+
+.bg-glow-2 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #db2777 0%, transparent 70%);
+    bottom: -150px;
+    right: -100px;
+}
+
+/* Container */
+.app-container {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+/* Cafe Header */
+.cafe-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    color: var(--accent-gold);
+    filter: drop-shadow(0 2px 10px rgba(245, 158, 11, 0.4));
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--text-light) 40%, var(--accent-crema));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+/* Leaderboard Banner Card */
+.leaderboard-section {
+    margin-bottom: 3.5rem;
+}
+
+.leaderboard-card {
+    background: linear-gradient(135deg, rgba(41, 37, 36, 0.9) 0%, rgba(28, 25, 23, 0.9) 100%);
+    border: 1.5px solid var(--accent-gold);
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.leaderboard-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.leaderboard-badge {
+    position: absolute;
+    top: 1.25rem;
+    left: 2rem;
+    background: var(--accent-gold);
+    color: var(--bg-dark);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.35rem 0.85rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+}
+
+.leaderboard-content {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-top: 1rem;
+}
+
+.leaderboard-image-container {
+    width: 110px;
+    height: 110px;
+    border-radius: 20px;
+    background: var(--wood-dark);
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.leaderboard-image-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.leaderboard-info {
+    flex-grow: 1;
+}
+
+.leader-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.leader-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+}
+
+.leader-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    padding: 0.45rem 1rem;
+    border-radius: 12px;
+}
+
+.score-label {
+    font-size: 0.85rem;
+    color: var(--accent-crema);
+}
+
+.score-number {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+}
+
+/* Specialty Board Section */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 0.75rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 2rem;
+}
+
+/* Coffee Cards */
+.coffee-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-warm);
+    border-radius: 22px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-warm);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.coffee-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 10px rgba(245, 158, 11, 0.1);
+}
+
+.coffee-top {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.coffee-img-container {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    background: rgba(28, 25, 23, 0.9);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+}
+
+.coffee-img-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.coffee-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.coffee-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+}
+
+/* Card Actions */
+.coffee-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.25rem;
+}
+
+.coffee-vote-count {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.vote-number {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: var(--text-light);
+    font-size: 1rem;
+    margin-left: 0.25rem;
+}
+
+.vote-btn {
+    background: var(--wood-dark);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-light);
+    padding: 0.55rem 1.1rem;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: var(--transition);
+}
+
+.vote-btn:hover {
+    background: var(--accent-gold);
+    color: var(--bg-dark);
+    border-color: var(--accent-gold);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.vote-btn i {
+    transition: transform 0.25s ease;
+}
+
+.vote-btn:hover i {
+    transform: scale(1.2);
+    color: #ef4444; /* Heart turns red on button hover! */
+}
+
+.vote-btn:active {
+    transform: scale(0.95);
+}
+
+/* Confetti popping container */
+.pop-effect {
+    animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes heartPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.25); color: #ef4444; }
+    100% { transform: scale(1); }
+}
+
+/* Loading state styles */
+.loading-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 5rem;
+    color: var(--text-muted);
+}
+
+.spinner {
+    font-size: 2rem;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .leaderboard-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    .leaderboard-image-container {
+        margin: 0 auto;
+    }
+    .leaderboard-badge {
+        position: static;
+        margin: 0 auto 1.5rem auto;
+        width: fit-content;
+    }
+    .leaderboard-card {
+        padding: 1.5rem;
+    }
+}

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="cup-flat" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <!-- Background soft circle -->
+  <circle cx="50" cy="50" r="45" fill="#1e293b" fill-opacity="0.08"/>
+
+  <!-- Saucer -->
+  <ellipse cx="50" cy="78" rx="33" ry="7" fill="url(#cup-flat)" opacity="0.9"/>
+
+  <!-- Handle -->
+  <path d="M68,52 C78,52 78,66 68,66" fill="none" stroke="url(#cup-flat)" stroke-width="6"/>
+
+  <!-- Cup Body -->
+  <path d="M28,45 C28,68 33,74 50,74 C67,74 72,68 72,45 Z" fill="url(#cup-flat)"/>
+
+  <!-- Coffee Surface -->
+  <ellipse cx="50" cy="45" rx="21" ry="5.5" fill="#78350f"/>
+
+  <!-- Latte Art (Rosetta/Leaf Pattern in white/cream) -->
+  <!-- Stem -->
+  <path d="M50,49 Q50,43 50,41" fill="none" stroke="#fef3c7" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Leaf segments -->
+  <path d="M50,48 Q44,46 48,45 Q50,47 50,48" fill="#fef3c7"/>
+  <path d="M50,48 Q56,46 52,45 Q50,47 50,48" fill="#fef3c7"/>
+  
+  <path d="M50,46 Q43,44 47,43 Q50,45 50,46" fill="#fef3c7"/>
+  <path d="M50,46 Q57,44 53,43 Q50,45 50,46" fill="#fef3c7"/>
+
+  <path d="M50,44 Q44,42 48,41 Q50,43 50,44" fill="#fef3c7"/>
+  <path d="M50,44 Q56,42 52,41 Q50,43 50,44" fill="#fef3c7"/>
+
+  <!-- Tip -->
+  <circle cx="50" cy="41" r="1.5" fill="#fef3c7"/>
+</svg>
