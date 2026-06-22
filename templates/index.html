@@ -25,7 +25,7 @@
                 <i class="fa-solid fa-mug-hot logo-icon"></i>
                 <h1 class="logo-text">Cozy Cup</h1>
             </div>
-            <p class="tagline">Explore and rate our finest barista selections. Your voice shapes our menu!</p>
+            <p class="tagline">Explore and rate our finest specialty coffee blends. Your ratings shape our chalkboard!</p>
         </header>
 
         <!-- Top Leaderboard Banner -->
@@ -39,18 +39,33 @@
                     <div class="leaderboard-info">
                         <h2 id="leader-name" class="leader-title">Loading Favorite...</h2>
                         <p id="leader-desc" class="leader-text">Rate items below to crown a favorite.</p>
-                        <div class="leader-score">
-                            <span class="score-label">Total Votes:</span>
-                            <span id="leader-votes" class="score-number">0</span>
+                        
+                        <div class="leader-rating-row">
+                            <!-- Star Score -->
+                            <div class="rating-stars" id="leader-stars-container">
+                                <!-- Stars generated via JS -->
+                            </div>
+                            <span class="avg-score-badge"><span id="leader-avg-rating">0.0</span> ★</span>
+                            <span class="total-ratings-label">(<span id="leader-total-ratings">0</span> ratings)</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Coffee Menu Grid -->
+        <!-- Coffee Menu Section -->
         <section class="menu-section">
-            <h2 class="section-title"><i class="fa-solid fa-mug-saucer"></i> Specialty Board</h2>
+            <div class="menu-header">
+                <h2 class="section-title"><i class="fa-solid fa-mug-saucer"></i> Specialty Board</h2>
+                <!-- Categories filter -->
+                <div class="category-tabs" id="category-tabs">
+                    <button class="tab-btn active" data-category="all">All</button>
+                    <button class="tab-btn" data-category="Hot">Hot Coffee</button>
+                    <button class="tab-btn" data-category="Cold">Iced & Cold</button>
+                    <button class="tab-btn" data-category="Special">Barista Specials</button>
+                </div>
+            </div>
+
             <div class="menu-grid" id="menu-grid">
                 <!-- Dynamic Coffee Cards -->
                 <div class="loading-state">

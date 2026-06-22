@@ -1,14 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     const menuGrid = document.getElementById('menu-grid');
+    const categoryTabs = document.getElementById('category-tabs');
+    
+    // Leaderboard elements
     const leaderName = document.getElementById('leader-name');
     const leaderDesc = document.getElementById('leader-desc');
-    const leaderVotes = document.getElementById('leader-votes');
+    const leaderVotes = document.getElementById('leader-total-ratings');
+    const leaderAvgRating = document.getElementById('leader-avg-rating');
     const leaderImg = document.getElementById('leader-img');
+    const leaderStarsContainer = document.getElementById('leader-stars-container');
     const leaderboardBanner = document.getElementById('leaderboard-banner');
 
     let coffeesData = [];
+    let activeCategory = 'all';
 
-    // Fetch coffees from backend
+    // Fetch coffees list from SQLite
     async function fetchCoffees() {
         try {
             const response = await fetch('/api/coffees');
@@ -16,13 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             coffeesData = await response.json();
             updateLeaderboard(coffeesData);
-            renderMenu(coffeesData);
+            applyFilter();
         } catch (error) {
             console.error('Error fetching coffees:', error);
             menuGrid.innerHTML = `
                 <div class="loading-state">
                     <i class="fa-solid fa-triangle-exclamation spinner" style="color: #ef4444;"></i>
-                    <p>Failed to load coffee board. Please try again later.</p>
+                    <p>Failed to load coffee board. Please refresh.</p>
                 </div>
             `;
         }
@@ -31,34 +37,69 @@ document.addEventListener('DOMContentLoaded', () => {
     // Determine and update leader details
     function updateLeaderboard(coffees) {
         if (!coffees || coffees.length === 0) {
-            leaderName.textContent = 'Join the vote!';
-            leaderDesc.textContent = 'Vote for your favorite coffee below to display the favorite here.';
+            leaderName.textContent = 'Welcome!';
+            leaderDesc.textContent = 'Rate specialty drinks below to crown a customer favorite.';
             leaderVotes.textContent = '0';
+            leaderAvgRating.textContent = '0.0';
             leaderImg.src = '/static/images/espresso.svg';
+            leaderStarsContainer.innerHTML = '';
             return;
         }
 
-        // Coffees are already sorted by votes DESC from backend
+        // Coffees are already sorted by rating sum/count descending
         const leader = coffees[0];
         
         leaderName.textContent = leader.name;
         leaderDesc.textContent = leader.description;
-        leaderVotes.textContent = leader.votes;
+        leaderVotes.textContent = leader.rating_count;
+        leaderAvgRating.textContent = leader.avg_rating;
         leaderImg.src = leader.image_url;
         
-        // Add subtle animation when leader changes
-        leaderboardBanner.classList.remove('pop-effect');
-        void leaderboardBanner.offsetWidth; // Trigger reflow
-        leaderboardBanner.classList.add('pop-effect');
+        renderStars(leaderStarsContainer, leader.avg_rating);
     }
 
-    // Render list of coffee cards
+    // Render stars representation
+    function renderStars(container, rating) {
+        container.innerHTML = '';
+        const fullStars = Math.floor(rating);
+        const hasHalf = rating % 1 >= 0.4; // 0.4-0.8 triggers half star representation
+        
+        for (let i = 1; i <= 5; i++) {
+            const star = document.createElement('i');
+            if (i <= fullStars) {
+                star.className = 'fa-solid fa-star';
+            } else if (i === fullStars + 1 && hasHalf) {
+                star.className = 'fa-solid fa-star-half-stroke';
+            } else {
+                star.className = 'fa-regular fa-star';
+            }
+            container.appendChild(star);
+        }
+    }
+
+    // Category Tabs handler
+    categoryTabs.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            categoryTabs.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeCategory = btn.dataset.category;
+            applyFilter();
+        });
+    });
+
+    function applyFilter() {
+        const filtered = activeCategory === 'all'
+            ? coffeesData
+            : coffeesData.filter(c => c.category === activeCategory);
+        renderMenu(filtered);
+    }
+
+    // Render cards list
     function renderMenu(coffees) {
-        // Clear grid
         menuGrid.innerHTML = '';
 
         if (coffees.length === 0) {
-            menuGrid.innerHTML = '<p class="loading-state">No specialty coffees available.</p>';
+            menuGrid.innerHTML = '<p class="loading-state">No coffee items in this category.</p>';
             return;
         }
 
@@ -73,82 +114,153 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="coffee-img-container">
                             <img src="${escapeHTML(coffee.image_url)}" alt="${escapeHTML(coffee.name)}">
                         </div>
-                        <h3 class="coffee-name">${escapeHTML(coffee.name)}</h3>
+                        <div>
+                            <h3 class="coffee-name">${escapeHTML(coffee.name)}</h3>
+                            <span class="coffee-category-tag">${escapeHTML(coffee.category)}</span>
+                        </div>
                     </div>
                     <p class="coffee-desc">${escapeHTML(coffee.description)}</p>
                 </div>
                 <div class="coffee-actions">
-                    <span class="coffee-vote-count">
-                        Votes: <span class="vote-number" id="votes-val-${coffee.id}">${coffee.votes}</span>
-                    </span>
-                    <button class="vote-btn" data-id="${coffee.id}">
-                        <i class="fa-regular fa-heart"></i> Vote
-                    </button>
+                    <div class="rating-info-row">
+                        <div class="score-display-inline">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="avg-text">${coffee.avg_rating}</span>
+                        </div>
+                        <span class="count-text">${coffee.rating_count} ratings</span>
+                    </div>
+                    <!-- Stars Rating Selection widget -->
+                    <div class="rating-widget">
+                        <span class="widget-label">Rate:</span>
+                        <div class="star-input-group" data-coffee-id="${coffee.id}">
+                            <i class="fa-regular fa-star star-rate-btn" data-value="1"></i>
+                            <i class="fa-regular fa-star star-rate-btn" data-value="2"></i>
+                            <i class="fa-regular fa-star star-rate-btn" data-value="3"></i>
+                            <i class="fa-regular fa-star star-rate-btn" data-value="4"></i>
+                            <i class="fa-regular fa-star star-rate-btn" data-value="5"></i>
+                        </div>
+                    </div>
                 </div>
             `;
 
-            // Click listener for Vote button
-            const voteBtn = card.querySelector('.vote-btn');
-            voteBtn.addEventListener('click', () => {
-                castVote(coffee.id, voteBtn);
+            // Star hover and click behavior inside card
+            const starInputGroup = card.querySelector('.star-input-group');
+            const stars = starInputGroup.querySelectorAll('.star-rate-btn');
+
+            stars.forEach((star, index) => {
+                // Hover behavior
+                star.addEventListener('mouseover', () => {
+                    stars.forEach((s, idx) => {
+                        if (idx <= index) {
+                            s.classList.add('hovered');
+                            s.classList.replace('fa-regular', 'fa-solid');
+                        } else {
+                            s.classList.remove('hovered');
+                            s.classList.replace('fa-solid', 'fa-regular');
+                        }
+                    });
+                });
+
+                // Hover exit behavior
+                star.addEventListener('mouseout', () => {
+                    stars.forEach(s => {
+                        s.classList.remove('hovered');
+                        s.classList.replace('fa-solid', 'fa-regular');
+                    });
+                });
+
+                // Rating Submission click behavior
+                star.addEventListener('click', (e) => {
+                    const starsCount = parseInt(star.dataset.value);
+                    submitRating(coffee.id, starsCount);
+                    spawnBurstEffect(e.clientX, e.clientY);
+                });
             });
 
             menuGrid.appendChild(card);
         });
     }
 
-    // Post vote to API
-    async function castVote(id, buttonEl) {
-        buttonEl.disabled = true;
-        const icon = buttonEl.querySelector('i');
-        
-        // Heart icon pop animation
-        icon.className = 'fa-solid fa-heart pop-effect';
-
+    // Submit rating stars to API
+    async function submitRating(coffeeId, starsCount) {
         try {
-            const response = await fetch(`/api/coffees/${id}/vote`, {
-                method: 'POST'
+            const response = await fetch(`/api/coffees/${coffeeId}/rate`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ stars: starsCount })
             });
 
-            if (!response.ok) throw new Error('Failed to register vote');
-
+            if (!response.ok) throw new Error('Failed to record rating');
             const result = await response.json();
 
-            // Update local data
+            // Update local state list
             coffeesData = coffeesData.map(c => {
-                if (c.id === id) {
-                    return { ...c, votes: result.votes };
+                if (c.id === coffeeId) {
+                    const newCount = result.rating_count;
+                    const newSum = c.rating_sum + starsCount;
+                    const newAvg = roundToOneDecimal(newSum / newCount);
+                    return { ...c, rating_sum: newSum, rating_count: newCount, avg_rating: newAvg };
                 }
                 return c;
             });
 
-            // Sort data: votes DESC, name ASC
+            // Re-sort coffees list by avg_rating DESC, rating_count DESC
             coffeesData.sort((a, b) => {
-                if (b.votes !== a.votes) {
-                    return b.votes - a.votes;
+                if (b.avg_rating !== a.avg_rating) {
+                    return b.avg_rating - a.avg_rating;
                 }
-                return a.name.localeCompare(b.name);
+                return b.rating_count - a.rating_count;
             });
 
-            // Update UI count immediately
-            const votesValSpan = document.getElementById(`votes-val-${id}`);
-            if (votesValSpan) votesValSpan.textContent = result.votes;
-
-            // Re-render other parts/leaderboard
-            setTimeout(() => {
-                updateLeaderboard(coffeesData);
-                renderMenu(coffeesData);
-            }, 400); // Small timeout to let animation finish nicely
+            // Re-render
+            updateLeaderboard(coffeesData);
+            applyFilter();
 
         } catch (error) {
-            console.error('Error voting:', error);
-            alert('Could not record vote. Please try again.');
-            icon.className = 'fa-regular fa-heart';
-            buttonEl.disabled = false;
+            console.error('Error submitting rating:', error);
+            alert('Failed to save rating. Please try again.');
         }
     }
 
-    // Escape HTML characters helper
+    // Particle Burst click effect
+    function spawnBurstEffect(x, y) {
+        const particlesCount = 8;
+        const particleIcons = ['☕', '⭐', '✨', '🟤'];
+        
+        for (let i = 0; i < particlesCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random character selection
+            particle.textContent = particleIcons[Math.floor(Math.random() * particleIcons.length)];
+            
+            // Set initial position
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            
+            // Randomize trajectory offset
+            const tx = (Math.random() - 0.5) * 150;
+            const ty = (Math.random() - 0.5) * 150 - 50; // offset slightly upwards
+            const rot = (Math.random() - 0.5) * 360;
+            
+            particle.style.setProperty('--tx', `${tx}px`);
+            particle.style.setProperty('--ty', `${ty}px`);
+            particle.style.setProperty('--rot', `${rot}deg`);
+            
+            document.body.appendChild(particle);
+            
+            // Clean up
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+            });
+        }
+    }
+
+    // Helper functions
+    function roundToOneDecimal(num) {
+        return Math.round(num * 10) / 10;
+    }
+
     function escapeHTML(str) {
         return str
             .replace(/&/g, '&amp;')
@@ -158,6 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/'/g, '&#039;');
     }
 
-    // Initial load
+    // Load menu
     fetchCoffees();
 });
