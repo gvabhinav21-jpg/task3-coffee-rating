@@ -1,0 +1,107 @@
+/* Leaderboard Banner Card details */
+.leaderboard-section {
+    margin-bottom: 3.5rem;
+}
+
+.leaderboard-card {
+    background: linear-gradient(135deg, rgba(41, 37, 36, 0.9) 0%, rgba(28, 25, 23, 0.9) 100%);
+    border: 1.5px solid var(--accent-gold);
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.65), 0 0 15px rgba(245, 158, 11, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.leaderboard-badge {
+    position: absolute;
+    top: 1.25rem;
+    left: 2rem;
+    background: var(--accent-gold);
+    color: var(--bg-dark);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.35rem 0.85rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+}
+
+.leaderboard-content {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-top: 1.25rem;
+}
+
+.leaderboard-image-container {
+    width: 110px;
+    height: 110px;
+    border-radius: 20px;
+    background: var(--wood-dark);
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.leaderboard-image-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.leaderboard-info {
+    flex-grow: 1;
+}
+
+.leader-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.leader-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+}
+
+.leader-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 0.15rem;
+    color: var(--accent-gold);
+}
+
+.avg-score-badge {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: var(--accent-gold);
+    padding: 0.2rem 0.55rem;
+    border-radius: 8px;
+}
+
+.total-ratings-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+

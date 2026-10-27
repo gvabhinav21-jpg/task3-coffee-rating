@@ -1,0 +1,97 @@
+/* Cozy Cup Design System */
+:root {
+    --bg-dark: #090706;
+    --card-bg: rgba(28, 25, 23, 0.7);
+    --border-warm: rgba(120, 53, 15, 0.2);
+    --accent-gold: #f59e0b;
+    --accent-crema: #fef3c7;
+    --text-light: #fafaf9;
+    --text-muted: #a8a29e;
+    --wood-dark: #292524;
+    
+    --shadow-warm: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 1px rgba(245, 158, 11, 0.15);
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Glowing Bubbles */
+.bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(130px);
+    z-index: -1;
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.bg-glow-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #78350f 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+}
+
+.bg-glow-2 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #db2777 0%, transparent 70%);
+    bottom: -150px;
+    right: -100px;
+}
+
+/* App Container */
+.app-container {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+/* Header */
+.cafe-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    color: var(--accent-gold);
+    filter: drop-shadow(0 2px 10px rgba(245, 158, 11, 0.4));
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--text-light) 40%, var(--accent-crema));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 300;
+}
+

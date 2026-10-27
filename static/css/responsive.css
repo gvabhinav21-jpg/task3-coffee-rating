@@ -1,0 +1,27 @@
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .leaderboard-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.25rem;
+    }
+    .leaderboard-image-container {
+        margin: 0 auto;
+    }
+    .leaderboard-badge {
+        position: static;
+        margin: 0 auto 1.25rem auto;
+        width: fit-content;
+    }
+    .leaderboard-card {
+        padding: 1.5rem;
+    }
+    .menu-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .category-tabs {
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+    }
+}
